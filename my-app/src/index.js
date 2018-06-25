@@ -111,7 +111,7 @@ class Game extends React.Component {
     let status;
     if (winner) {
       status = "Winner: " + winner;
-    } else if (isFullBoard) {
+    } else if (isFullBoard(current.squares)) {
       status = "The game ended in a draw :(";
     } else {
       status = "Next player: " + (this.state.xIsNext ? "X" : "O");
