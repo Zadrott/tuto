@@ -2,12 +2,38 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
-function Square(props) {
-  return (
-    <button className="square" onClick={props.onClick}>
-      {props.value}
-    </button>
-  );
+class Square extends React.Component {
+  renderValue(value) {
+    if (value === "X"){
+      return (
+<svg width="100" height="100"><path fill="#fff" d="M-1-1h102v102H-1z"/><g><path fill="#fff" stroke="#000" stroke-width="5" d="M3 26L26 4l24 24L74 4l23 22-24 24 24 24-23 23-24-24-24 24L3 74l24-24L3 26z"/></g></svg>
+      );
+    }
+    else if (value === "O"){
+      return (
+        <svg height="100" width="100">
+          <circle
+            cx="50"
+            cy="50"
+            r="40"
+            stroke="black"
+            stroke-width="5"
+            fill="white"
+          />
+        </svg>
+      );
+    }
+    return   <svg height="100" width="100"></svg>;
+    
+  }
+
+  render() {
+    return (
+      <button className="square" onClick={this.props.onClick}>
+        {this.renderValue(this.props.value)}
+      </button>
+    );
+  }
 }
 
 class Board extends React.Component {
@@ -22,7 +48,7 @@ class Board extends React.Component {
 
   render() {
     return (
-      <div className= "board">
+      <div className="board">
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
